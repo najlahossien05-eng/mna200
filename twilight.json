@@ -2259,6 +2259,573 @@
           "maxLength": 10
         }
       ]
+    },
+    {
+      "key": "6f1c2b7e-3a84-4d29-9c5e-8b1d0e7a4f63",
+      "title": {
+        "en": "Motqan glowing categories",
+        "ar": "أقسام مُتقن المتوهجة"
+      },
+      "icon": "sicon-layout-grid",
+      "path": "home.motqan-categories",
+      "is_default": false,
+      "fields": [
+        {
+          "id": "group_1",
+          "type": "static",
+          "format": "title",
+          "value": "النصوص"
+        },
+        {
+          "id": "eyebrow",
+          "type": "string",
+          "format": "text",
+          "label": "الشارة الصغيرة فوق العنوان",
+          "required": false,
+          "value": "أقسام مُتقن",
+          "multilanguage": true
+        },
+        {
+          "id": "title",
+          "type": "string",
+          "format": "text",
+          "label": "العنوان الرئيسي",
+          "required": false,
+          "value": "تصفّح الملفات حسب القسم",
+          "multilanguage": true
+        },
+        {
+          "id": "subtitle",
+          "type": "string",
+          "format": "textarea",
+          "label": "السطر التعريفي",
+          "required": false,
+          "value": "ملفات تعليمية جاهزة، مبنية وفق الأدلة المعتمدة، قابلة للتعديل والطباعة",
+          "multilanguage": true
+        },
+        {
+          "id": "cta",
+          "type": "string",
+          "format": "text",
+          "label": "نص زر التصفح (يظهر عند التمرير)",
+          "required": false,
+          "value": "تصفّح القسم",
+          "multilanguage": true
+        },
+        {
+          "id": "group_2",
+          "type": "static",
+          "format": "title",
+          "value": "الأقسام"
+        },
+        {
+          "id": "categories",
+          "type": "collection",
+          "format": "collection",
+          "label": "قائمة الأقسام",
+          "item_label": "قسم",
+          "required": true,
+          "minLength": 1,
+          "maxLength": 12,
+          "fields": [
+            {
+              "id": "categories.name",
+              "type": "string",
+              "format": "text",
+              "label": "اسم القسم",
+              "required": true,
+              "multilanguage": true
+            },
+            {
+              "id": "categories.desc",
+              "type": "string",
+              "format": "text",
+              "label": "وصف قصير",
+              "required": false,
+              "multilanguage": true
+            },
+            {
+              "id": "categories.icon",
+              "type": "items",
+              "format": "dropdown-list",
+              "label": "الأيقونة",
+              "source": "Manual",
+              "required": false,
+              "options": [
+                {
+                  "label": "مدرسة",
+                  "value": "school",
+                  "key": "school"
+                },
+                {
+                  "label": "قلب ومصافحة (توجيه)",
+                  "value": "heart-handshake",
+                  "key": "heart-handshake"
+                },
+                {
+                  "label": "كأس (نشاط)",
+                  "value": "trophy",
+                  "key": "trophy"
+                },
+                {
+                  "label": "أشخاص (وكلاء)",
+                  "value": "users",
+                  "key": "users"
+                },
+                {
+                  "label": "وسام (أداء)",
+                  "value": "award",
+                  "key": "award"
+                },
+                {
+                  "label": "قائمة تحقق",
+                  "value": "clipboard-check",
+                  "key": "clipboard-check"
+                },
+                {
+                  "label": "كتاب مفتوح",
+                  "value": "book-open",
+                  "key": "book-open"
+                },
+                {
+                  "label": "ملف",
+                  "value": "file-text",
+                  "key": "file-text"
+                },
+                {
+                  "label": "قبعة تخرج",
+                  "value": "graduation-cap",
+                  "key": "graduation-cap"
+                },
+                {
+                  "label": "تقويم",
+                  "value": "calendar",
+                  "key": "calendar"
+                },
+                {
+                  "label": "درع",
+                  "value": "shield-check",
+                  "key": "shield-check"
+                },
+                {
+                  "label": "عرض تقديمي",
+                  "value": "presentation",
+                  "key": "presentation"
+                }
+              ],
+              "selected": [
+                {
+                  "label": "ملف",
+                  "value": "file-text",
+                  "key": "file-text"
+                }
+              ]
+            },
+            {
+              "id": "categories.image",
+              "type": "string",
+              "format": "image",
+              "label": "صورة بدل الأيقونة (PNG شفاف — اختياري)",
+              "required": false
+            },
+            {
+              "id": "categories.badge",
+              "type": "string",
+              "format": "text",
+              "label": "شارة ذهبية (مثل: جديد 1448) — اختياري",
+              "required": false,
+              "multilanguage": true
+            },
+            {
+              "id": "categories.count",
+              "type": "string",
+              "format": "text",
+              "label": "نص العدد (مثل: 16 ملفًا) — اختياري",
+              "required": false,
+              "multilanguage": true
+            },
+            {
+              "id": "categories.link",
+              "type": "items",
+              "format": "variable-list",
+              "label": "رابط القسم",
+              "source": "custom",
+              "required": false,
+              "sources": [
+                {
+                  "label": "تصنيف",
+                  "value": "categories",
+                  "key": "categories"
+                },
+                {
+                  "label": "منتج",
+                  "value": "products",
+                  "key": "products"
+                },
+                {
+                  "label": "صفحة",
+                  "value": "pages",
+                  "key": "pages"
+                },
+                {
+                  "label": "رابط مخصص",
+                  "value": "custom",
+                  "key": "custom"
+                }
+              ]
+            }
+          ],
+          "value": [
+            {
+              "categories.name": "الإدارة المدرسية",
+              "categories.desc": "سجلات وخطط مدير المدرسة",
+              "categories.icon": [
+                {
+                  "label": "مدرسة",
+                  "value": "school",
+                  "key": "school"
+                }
+              ],
+              "categories.badge": "جديد 1448",
+              "categories.count": "",
+              "categories.image": ""
+            },
+            {
+              "categories.name": "التوجيه الطلابي",
+              "categories.desc": "برامج وخطط وسجلات الموجّه",
+              "categories.icon": [
+                {
+                  "label": "قلب ومصافحة (توجيه)",
+                  "value": "heart-handshake",
+                  "key": "heart-handshake"
+                }
+              ],
+              "categories.badge": "",
+              "categories.count": "",
+              "categories.image": ""
+            },
+            {
+              "categories.name": "النشاط الطلابي",
+              "categories.desc": "برامج ومناسبات وتقارير النشاط",
+              "categories.icon": [
+                {
+                  "label": "كأس (نشاط)",
+                  "value": "trophy",
+                  "key": "trophy"
+                }
+              ],
+              "categories.badge": "",
+              "categories.count": "",
+              "categories.image": ""
+            },
+            {
+              "categories.name": "وكلاء المدارس",
+              "categories.desc": "ملفات الوكيل والشؤون التعليمية",
+              "categories.icon": [
+                {
+                  "label": "أشخاص (وكلاء)",
+                  "value": "users",
+                  "key": "users"
+                }
+              ],
+              "categories.badge": "",
+              "categories.count": "",
+              "categories.image": ""
+            },
+            {
+              "categories.name": "الأداء الوظيفي",
+              "categories.desc": "شواهد الأداء وملفات الإنجاز",
+              "categories.icon": [
+                {
+                  "label": "وسام (أداء)",
+                  "value": "award",
+                  "key": "award"
+                }
+              ],
+              "categories.badge": "",
+              "categories.count": "",
+              "categories.image": ""
+            }
+          ]
+        },
+        {
+          "id": "group_3",
+          "type": "static",
+          "format": "title",
+          "value": "الشكل والألوان"
+        },
+        {
+          "id": "theme",
+          "type": "items",
+          "format": "dropdown-list",
+          "label": "نمط الألوان",
+          "source": "Manual",
+          "required": false,
+          "options": [
+            {
+              "label": "بترولي (هوية المتجر)",
+              "value": "petrol",
+              "key": "petrol"
+            },
+            {
+              "label": "أخضر مُتقن وذهبي",
+              "value": "brand",
+              "key": "brand"
+            },
+            {
+              "label": "ليلي ذهبي",
+              "value": "night",
+              "key": "night"
+            },
+            {
+              "label": "كريمي فاتح",
+              "value": "cream",
+              "key": "cream"
+            }
+          ],
+          "selected": [
+            {
+              "label": "بترولي (هوية المتجر)",
+              "value": "petrol",
+              "key": "petrol"
+            }
+          ],
+          "value": [
+            {
+              "label": "بترولي (هوية المتجر)",
+              "value": "petrol",
+              "key": "petrol"
+            }
+          ]
+        },
+        {
+          "id": "use_custom_colors",
+          "type": "boolean",
+          "format": "switch",
+          "label": "استخدام ألواني الخاصة بدل ألوان النمط",
+          "required": false,
+          "value": false
+        },
+        {
+          "id": "glow_color",
+          "type": "string",
+          "format": "color",
+          "inputType": "color",
+          "label": "لون التوهج",
+          "required": false,
+          "value": "#3ed3c3"
+        },
+        {
+          "id": "accent_color",
+          "type": "string",
+          "format": "color",
+          "inputType": "color",
+          "label": "اللون الذهبي (الزر والخط والشارة)",
+          "required": false,
+          "value": "#c9a96a"
+        },
+        {
+          "id": "card_from",
+          "type": "string",
+          "format": "color",
+          "inputType": "color",
+          "label": "لون البطاقة — بداية التدرج",
+          "required": false,
+          "value": "#0a3940"
+        },
+        {
+          "id": "card_to",
+          "type": "string",
+          "format": "color",
+          "inputType": "color",
+          "label": "لون البطاقة — نهاية التدرج",
+          "required": false,
+          "value": "#136e73"
+        },
+        {
+          "id": "title_color",
+          "type": "string",
+          "format": "color",
+          "inputType": "color",
+          "label": "لون العنوان الرئيسي",
+          "required": false,
+          "value": "#0e555b"
+        },
+        {
+          "id": "bg_color",
+          "type": "string",
+          "format": "color",
+          "inputType": "color",
+          "label": "لون خلفية القسم",
+          "required": false,
+          "value": "#ffffff"
+        },
+        {
+          "id": "glow_strength",
+          "type": "number",
+          "format": "slider",
+          "label": "قوة التوهج",
+          "required": false,
+          "value": 85,
+          "minimum": 0,
+          "maximum": 100,
+          "inputType": "range",
+          "step": 1
+        },
+        {
+          "id": "border_radius",
+          "type": "number",
+          "format": "integer",
+          "label": "انحناء الزوايا",
+          "required": false,
+          "value": 22,
+          "minimum": 0,
+          "maximum": 40
+        },
+        {
+          "id": "group_4",
+          "type": "static",
+          "format": "title",
+          "value": "التخطيط"
+        },
+        {
+          "id": "columns_desktop",
+          "type": "number",
+          "format": "integer",
+          "label": "عدد الأعمدة — كمبيوتر",
+          "required": false,
+          "value": 5,
+          "minimum": 2,
+          "maximum": 6
+        },
+        {
+          "id": "columns_tablet",
+          "type": "number",
+          "format": "integer",
+          "label": "عدد الأعمدة — تابلت",
+          "required": false,
+          "value": 3,
+          "minimum": 1,
+          "maximum": 4
+        },
+        {
+          "id": "columns_mobile",
+          "type": "number",
+          "format": "integer",
+          "label": "عدد الأعمدة — جوال (عند اختيار شبكة)",
+          "required": false,
+          "value": 2,
+          "minimum": 1,
+          "maximum": 3
+        },
+        {
+          "id": "mobile_layout",
+          "type": "items",
+          "format": "radio-list",
+          "label": "العرض على الجوال",
+          "source": "Manual",
+          "required": false,
+          "options": [
+            {
+              "label": "شريط يُسحب أفقيًا",
+              "value": "scroll",
+              "key": "scroll"
+            },
+            {
+              "label": "شبكة",
+              "value": "grid",
+              "key": "grid"
+            }
+          ],
+          "selected": [
+            {
+              "label": "شريط يُسحب أفقيًا",
+              "value": "scroll",
+              "key": "scroll"
+            }
+          ],
+          "value": [
+            {
+              "label": "شريط يُسحب أفقيًا",
+              "value": "scroll",
+              "key": "scroll"
+            }
+          ]
+        },
+        {
+          "id": "padding_top",
+          "type": "number",
+          "format": "integer",
+          "label": "المسافة العلوية",
+          "required": false,
+          "value": 56,
+          "minimum": 0,
+          "maximum": 160
+        },
+        {
+          "id": "padding_bottom",
+          "type": "number",
+          "format": "integer",
+          "label": "المسافة السفلية",
+          "required": false,
+          "value": 64,
+          "minimum": 0,
+          "maximum": 160
+        },
+        {
+          "id": "group_5",
+          "type": "static",
+          "format": "title",
+          "value": "الحركة"
+        },
+        {
+          "id": "motion",
+          "type": "items",
+          "format": "radio-list",
+          "label": "مستوى الحركة",
+          "source": "Manual",
+          "required": false,
+          "options": [
+            {
+              "label": "كاملة",
+              "value": "full",
+              "key": "full"
+            },
+            {
+              "label": "هادئة",
+              "value": "soft",
+              "key": "soft"
+            },
+            {
+              "label": "بدون حركة",
+              "value": "none",
+              "key": "none"
+            }
+          ],
+          "selected": [
+            {
+              "label": "كاملة",
+              "value": "full",
+              "key": "full"
+            }
+          ],
+          "value": [
+            {
+              "label": "كاملة",
+              "value": "full",
+              "key": "full"
+            }
+          ]
+        },
+        {
+          "id": "tilt",
+          "type": "boolean",
+          "format": "switch",
+          "label": "إمالة ثلاثية الأبعاد مع الماوس",
+          "required": false,
+          "value": true
+        }
+      ]
     }
   ],
   "support_url": "https://salla.com/",

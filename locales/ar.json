@@ -93,5 +93,7 @@
   "blocks.order_options.subtitle": "اختر من الخيارات المتاحة.",
   "blocks.order_options.continue": "متابعة",
   "blocks.order_options.total": "الإجمالي",
-  "blocks.order_options.required_message": "يرجى تعبئة الحقول المطلوبة"
+  "blocks.order_options.required_message": "يرجى تعبئة الحقول المطلوبة",
+  "blocks.home.motqan_categories.cta": "تصفّح القسم",
+  "blocks.home.motqan_categories.label": "أقسام المتجر"
 }

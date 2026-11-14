@@ -1,0 +1,286 @@
+// عنصر «أقسام مُتقن» — home block `motqan-categories` (app/components/home/MotqanCategories.tsx)
+@property --mq-angle { syntax: "<angle>"; initial-value: 0deg; inherits: false; }
+
+/* ── الألوان الافتراضية (بترولي — هوية المتجر الحالية) ── */
+.mq-cats {
+  --mq-card-from: #0a3940;
+  --mq-card-to:   #136e73;
+  --mq-glow:      #3ed3c3;
+  --mq-accent:    #c9a96a;
+  --mq-text:      #ffffff;
+  --mq-icon:      #ffffff;
+  --mq-title:     #0e555b;
+  --mq-muted:     #5d7678;
+  --mq-section-bg: transparent;
+  --mq-gap: 22px;
+
+  direction: rtl;
+  font-family: inherit;
+  padding: var(--mq-pt, 56px) 16px var(--mq-pb, 64px);
+  background: var(--mq-section-bg);
+  overflow: hidden;
+}
+/* أخضر مُتقن + ذهبي */
+.mq-cats[data-theme="brand"] {
+  --mq-card-from: #022f26; --mq-card-to: #0a6450;
+  --mq-glow: #57dcae; --mq-accent: #d1b073;
+  --mq-title: #044f40; --mq-muted: #5a6f68;
+}
+/* كريمي فاتح */
+.mq-cats[data-theme="cream"] {
+  --mq-card-from: #fffcf4; --mq-card-to: #f4ead3;
+  --mq-glow: #d8b265; --mq-accent: #0e5a52;
+  --mq-text: #0b3f39; --mq-icon: #0e5a52;
+  --mq-title: #0b3f39; --mq-muted: #7a7360;
+}
+/* ليلي فاخر */
+.mq-cats[data-theme="night"] {
+  --mq-card-from: #0d1b22; --mq-card-to: #1b3440;
+  --mq-glow: #e3c27c; --mq-accent: #e3c27c;
+  --mq-title: #12313a; --mq-muted: #5f6b70;
+}
+
+.mq-cats *, .mq-cats *::before, .mq-cats *::after { box-sizing: border-box; }
+
+/* ── رأس القسم ── */
+.mq-cats__head { text-align: center; max-width: 720px; margin: 0 auto 40px; }
+.mq-cats__eyebrow {
+  display: inline-flex; align-items: center; gap: 10px;
+  font-size: 13px; font-weight: 600; letter-spacing: .02em;
+  color: var(--mq-accent);
+  padding: 6px 16px; border-radius: 999px;
+  background: color-mix(in srgb, var(--mq-accent) 10%, transparent);
+  border: 1px solid color-mix(in srgb, var(--mq-accent) 30%, transparent);
+}
+.mq-cats__eyebrow::before, .mq-cats__eyebrow::after { content: "◆"; font-size: 8px; opacity: .8; }
+.mq-cats__title {
+  margin: 14px 0 0; font-size: clamp(24px, 3vw, 34px); font-weight: 800; line-height: 1.35;
+  color: var(--mq-title);
+}
+.mq-cats__ornament { display: inline-flex; align-items: center; gap: 6px; margin: 12px 0 10px; }
+.mq-cats__ornament i { width: 34px; height: 2px; border-radius: 2px; background: color-mix(in srgb, var(--mq-accent) 55%, transparent); }
+.mq-cats__ornament b { width: 8px; height: 8px; transform: rotate(45deg); background: var(--mq-accent); border-radius: 2px; }
+.mq-cats__sub { margin: 0; font-size: 15.5px; line-height: 1.8; color: var(--mq-muted); }
+
+/* ── الشبكة ── */
+.mq-cats__grid {
+  display: flex; flex-wrap: wrap; justify-content: center;
+  gap: var(--mq-gap); max-width: 1240px; margin: 0 auto;
+}
+.mq-cats__item {
+  --w: calc((100% - (var(--mq-c) - 1) * var(--mq-gap)) / var(--mq-c));
+  --mq-c: var(--mq-cols, 5);
+  position: relative; flex: 0 0 var(--w); max-width: var(--w);
+  perspective: 900px;
+}
+
+/* ── الهالة المتوهجة خلف البطاقة ── */
+.mq-cats__item::before {
+  content: ""; position: absolute; inset: 0; z-index: 0; border-radius: var(--mq-radius, 22px);
+  background: conic-gradient(from var(--mq-angle), var(--mq-glow), var(--mq-accent), var(--mq-glow), color-mix(in srgb, var(--mq-glow) 40%, transparent), var(--mq-glow));
+  filter: blur(var(--mq-glow-blur, 30px)); opacity: 0; transform: translateY(6px) scale(.94);
+  transition: opacity .5s ease, transform .5s ease;
+  animation: mq-spin 5s linear infinite paused;
+}
+
+/* ── البطاقة ── */
+.mq-cats__card {
+  position: relative; z-index: 1; isolation: isolate;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 8px; min-height: 270px; padding: 34px 18px 22px;
+  border-radius: var(--mq-radius, 22px); text-align: center; text-decoration: none;
+  color: var(--mq-text);
+  background: linear-gradient(150deg, var(--mq-card-from) 0%, var(--mq-card-to) 100%);
+  box-shadow: 0 14px 34px -18px color-mix(in srgb, var(--mq-card-from) 85%, transparent);
+  transform-style: preserve-3d;
+  transform: translateY(var(--ty, 0px)) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
+  transition: transform .55s cubic-bezier(.2,.8,.2,1), box-shadow .5s ease;
+  outline: none; -webkit-tap-highlight-color: transparent;
+  &:hover, &:focus { color: var(--mq-text); text-decoration: none; }
+}
+/* إطار ضوئي دوّار */
+.mq-cats__card::before {
+  content: ""; position: absolute; inset: 0; z-index: 3; pointer-events: none;
+  border-radius: inherit; padding: 1.6px;
+  background: conic-gradient(from var(--mq-angle), transparent 0 52%, var(--mq-glow) 70%, var(--mq-accent) 82%, transparent 96%);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor; mask-composite: exclude;
+  opacity: 0; transition: opacity .45s ease;
+  animation: mq-spin 3.2s linear infinite paused;
+}
+/* إطار ثابت خفيف */
+.mq-cats__card::after {
+  content: ""; position: absolute; inset: 0; z-index: 2; pointer-events: none; border-radius: inherit;
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--mq-text) 9%, transparent),
+              inset 0 1px 0 color-mix(in srgb, #fff 14%, transparent);
+}
+
+/* طبقات الخلفية */
+.mq-cats__bg { position: absolute; inset: 0; z-index: -1; border-radius: inherit; overflow: hidden; }
+.mq-cats__aurora {
+  position: absolute; inset: -45%;
+  background:
+    radial-gradient(38% 38% at 28% 30%, color-mix(in srgb, var(--mq-glow) 22%, transparent), transparent 70%),
+    radial-gradient(34% 34% at 74% 72%, color-mix(in srgb, var(--mq-accent) 16%, transparent), transparent 70%);
+  animation: mq-drift 16s ease-in-out infinite alternate;
+  animation-delay: calc(var(--i, 0) * -3s);
+}
+.mq-cats__dots {
+  position: absolute; inset: 0;
+  background-image: radial-gradient(color-mix(in srgb, var(--mq-text) 13%, transparent) 1px, transparent 1.3px);
+  background-size: 16px 16px;
+  -webkit-mask-image: radial-gradient(circle at 50% 38%, #000 10%, transparent 72%);
+          mask-image: radial-gradient(circle at 50% 38%, #000 10%, transparent 72%);
+  opacity: .55;
+}
+.mq-cats__ring {
+  position: absolute; left: 50%; top: 42%; width: 82%; aspect-ratio: 1;
+  transform: translate(-50%, -50%); border-radius: 50%;
+  border: 1px solid color-mix(in srgb, var(--mq-text) 9%, transparent);
+  transition: transform .8s cubic-bezier(.2,.8,.2,1), border-color .5s;
+}
+.mq-cats__spot {
+  position: absolute; inset: 0; opacity: 0; transition: opacity .4s ease;
+  background: radial-gradient(240px circle at var(--mx, 50%) var(--my, 35%),
+              color-mix(in srgb, var(--mq-glow) 32%, transparent), transparent 62%);
+}
+.mq-cats__shine {
+  position: absolute; inset: -60% -80%;
+  background: linear-gradient(115deg, transparent 42%, rgba(255,255,255,.20) 50%, transparent 58%);
+  transform: translateX(-55%);
+}
+
+/* الأيقونة */
+.mq-cats__icon {
+  position: relative; width: 86px; height: 86px; margin-bottom: 10px;
+  display: grid; place-items: center; transform: translateZ(46px);
+}
+.mq-cats__icon::before {
+  content: ""; position: absolute; inset: -6px; border-radius: 50%;
+  background: radial-gradient(circle, color-mix(in srgb, var(--mq-glow) 30%, transparent), transparent 68%);
+  opacity: .45; transition: opacity .5s, transform .5s;
+}
+.mq-cats__icon::after {
+  content: ""; position: absolute; inset: -12px; border-radius: 50%;
+  border: 1px dashed color-mix(in srgb, var(--mq-accent) 45%, transparent);
+  opacity: .55; animation: mq-rotate 26s linear infinite;
+}
+.mq-cats__icon svg {
+  position: relative; width: 48px; height: 48px;
+  fill: none; stroke: var(--mq-icon); stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round;
+  transition: transform .55s cubic-bezier(.2,.8,.2,1), filter .5s;
+}
+.mq-cats__icon img { position: relative; width: 64px; height: 64px; object-fit: contain; transition: transform .55s cubic-bezier(.2,.8,.2,1), filter .5s; }
+
+.mq-cats__name {
+  margin: 0; font-size: clamp(18px, 1.55vw, 22px); font-weight: 800; line-height: 1.4;
+  transform: translateZ(34px);
+}
+.mq-cats__desc {
+  margin: 0; font-size: 13.5px; line-height: 1.7; opacity: .78; max-width: 22ch;
+  transform: translateZ(24px);
+}
+.mq-cats__count {
+  font-size: 12px; font-weight: 600; padding: 2px 10px; border-radius: 999px;
+  background: color-mix(in srgb, var(--mq-text) 10%, transparent);
+  transform: translateZ(24px);
+}
+
+/* التذييل: خط ذهبي ← زر «تصفّح» */
+.mq-cats__foot { position: relative; width: 100%; height: 36px; margin-top: 6px; transform: translateZ(30px); }
+.mq-cats__line, .mq-cats__cta { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); }
+.mq-cats__line {
+  width: 36px; height: 3px; border-radius: 3px; background: var(--mq-accent); opacity: .85;
+  transition: width .45s cubic-bezier(.2,.8,.2,1), opacity .3s;
+}
+.mq-cats__cta {
+  display: inline-flex; align-items: center; gap: 6px; white-space: nowrap;
+  padding: 6px 16px; border-radius: 999px; font-size: 13.5px; font-weight: 700;
+  color: var(--mq-text);
+  background: color-mix(in srgb, var(--mq-accent) 22%, transparent);
+  border: 1px solid color-mix(in srgb, var(--mq-accent) 60%, transparent);
+  opacity: 0; transform: translate(-50%, calc(-50% + 10px));
+  transition: opacity .4s ease, transform .5s cubic-bezier(.2,.8,.2,1);
+}
+.mq-cats__cta svg { width: 15px; height: 15px; fill: none; stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; transition: transform .4s; }
+
+.mq-cats__badge {
+  position: absolute; top: 14px; inset-inline-start: 14px; z-index: 4;
+  font-size: 11.5px; font-weight: 700; padding: 3px 11px; border-radius: 999px;
+  color: #1d1406; background: linear-gradient(135deg, #f1d79c, var(--mq-accent));
+  box-shadow: 0 4px 14px -4px color-mix(in srgb, var(--mq-accent) 70%, transparent);
+  transform: translateZ(50px);
+}
+
+/* ═══ حالة التمرير / التركيز / اللمس ═══ */
+.mq-cats__item:is(:hover, :focus-within, .is-active)::before { opacity: var(--mq-glow-strength, .85); transform: translateY(8px) scale(1.02); animation-play-state: running; }
+.mq-cats__item:is(:hover, :focus-within, .is-active) .mq-cats__card {
+  --ty: -10px;
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--mq-glow) 45%, transparent),
+              0 0 34px -4px color-mix(in srgb, var(--mq-glow) 55%, transparent),
+              0 28px 56px -22px color-mix(in srgb, var(--mq-card-from) 90%, transparent);
+}
+.mq-cats__item:is(:hover, :focus-within, .is-active) .mq-cats__card::before { opacity: 1; animation-play-state: running; }
+.mq-cats__item:is(:hover, :focus-within, .is-active) .mq-cats__spot { opacity: 1; }
+.mq-cats__item:is(:hover, :focus-within, .is-active) .mq-cats__shine { transform: translateX(55%); transition: transform 1.15s cubic-bezier(.3,.6,.2,1); }
+.mq-cats__item:is(:hover, :focus-within, .is-active) .mq-cats__ring { transform: translate(-50%, -50%) scale(1.12); border-color: color-mix(in srgb, var(--mq-glow) 30%, transparent); }
+.mq-cats__item:is(:hover, :focus-within, .is-active) .mq-cats__icon::before { opacity: 1; transform: scale(1.25); }
+.mq-cats__item:is(:hover, :focus-within, .is-active) .mq-cats__icon :is(svg, img) {
+  transform: translateY(-5px) scale(1.07);
+  filter: drop-shadow(0 0 12px color-mix(in srgb, var(--mq-glow) 85%, transparent));
+}
+.mq-cats__item:is(:hover, :focus-within, .is-active) .mq-cats__line { width: 0; opacity: 0; }
+.mq-cats__item:is(:hover, :focus-within, .is-active) .mq-cats__cta { opacity: 1; transform: translate(-50%, -50%); }
+.mq-cats__item:hover .mq-cats__cta svg { transform: translateX(-4px); }
+.mq-cats__card:focus-visible { box-shadow: 0 0 0 3px var(--mq-glow); }
+
+/* ═══ ظهور متتابع عند الوصول للقسم ═══ */
+.mq-cats[data-motion="full"] .mq-cats__head,
+.mq-cats[data-motion="full"] .mq-cats__item,
+.mq-cats[data-motion="soft"] .mq-cats__item {
+  opacity: 0; transform: translateY(34px) scale(.97); filter: blur(6px);
+  transition: opacity .8s ease, transform .9s cubic-bezier(.2,.8,.2,1), filter .8s ease;
+  transition-delay: calc(var(--i, 0) * 95ms);
+}
+.mq-cats .mq-cats__head.is-in, .mq-cats .mq-cats__item.is-in { opacity: 1; transform: none; filter: none; }
+
+/* ═══ مستويات الحركة ═══ */
+.mq-cats[data-motion="soft"] .mq-cats__aurora,
+.mq-cats[data-motion="soft"] .mq-cats__icon::after { animation: none; }
+.mq-cats[data-motion="none"] *,
+.mq-cats[data-motion="none"] *::before,
+.mq-cats[data-motion="none"] *::after { animation: none !important; transition-duration: .01ms !important; }
+.mq-cats[data-motion="none"] .mq-cats__card::before { background: linear-gradient(135deg, var(--mq-glow), var(--mq-accent)); }
+
+/* ═══ الاستجابة ═══ */
+@media (max-width: 1024px) { .mq-cats__item { --mq-c: var(--mq-cols-tab, 3); } }
+@media (max-width: 640px) {
+  .mq-cats { padding: calc(var(--mq-pt, 56px) * .7) 0 calc(var(--mq-pb, 64px) * .75); }
+  .mq-cats__head { padding: 0 16px; margin-bottom: 26px; }
+  .mq-cats__item { --mq-c: var(--mq-cols-mob, 2); }
+  .mq-cats { --mq-gap: 14px; }
+  .mq-cats__grid { padding: 0 16px; }
+  .mq-cats__card { min-height: 220px; padding: 26px 12px 16px; }
+  .mq-cats__icon { width: 70px; height: 70px; }
+  .mq-cats__icon svg { width: 40px; height: 40px; }
+  .mq-cats__desc { font-size: 12.5px; }
+  .mq-cats__cta { font-size: 12.5px; padding: 5px 12px; }
+  .mq-cats[data-mobile="scroll"] .mq-cats__grid {
+    flex-wrap: nowrap; justify-content: flex-start; overflow-x: auto;
+    scroll-snap-type: x mandatory; padding: 34px 16px 44px; margin: -20px 0 -18px; scrollbar-width: none;
+  }
+  .mq-cats[data-mobile="scroll"] .mq-cats__grid::-webkit-scrollbar { display: none; }
+  .mq-cats[data-mobile="scroll"] .mq-cats__item { flex: 0 0 66%; max-width: 66%; scroll-snap-align: center; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .mq-cats *, .mq-cats *::before, .mq-cats *::after { animation: none !important; }
+  .mq-cats .mq-cats__head, .mq-cats .mq-cats__item { opacity: 1 !important; transform: none !important; filter: none !important; }
+}
+
+@keyframes mq-spin   { to { --mq-angle: 360deg; } }
+@keyframes mq-rotate { to { transform: rotate(360deg); } }
+@keyframes mq-drift  {
+  0%   { transform: translate(0, 0) rotate(0deg); }
+  50%  { transform: translate(6%, -5%) rotate(8deg); }
+  100% { transform: translate(-5%, 6%) rotate(-6deg); }
+}

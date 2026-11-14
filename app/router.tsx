@@ -21,6 +21,7 @@ import {
   ProductsSlider,
   SliderProductsWithHeader,
   EnhancedSquareBanners,
+  MotqanCategories,
 } from './components/home';
 import { Blog } from './components/home/Blog';
 import {
@@ -77,6 +78,8 @@ registerHomeComponents({
   'slider-products-with-header': SliderProductsWithHeader,
   'enhanced-square-banners': EnhancedSquareBanners,
   blog: Blog,
+  // «أقسام مُتقن» — شبكة الأقسام المتوهجة.
+  'motqan-categories': MotqanCategories,
 });
 
 // Wrapper `<section>` classes for `featured-products` — the engine only styles
